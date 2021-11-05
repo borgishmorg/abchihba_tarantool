@@ -4,7 +4,9 @@ require('strict').on()
 
 -- configure path so that you can run application
 -- from outside the root directory
+---@diagnostic disable-next-line: undefined-field
 if package.setsearchroot ~= nil then
+---@diagnostic disable-next-line: undefined-field
     package.setsearchroot()
 else
     -- Workaround for rocks loading in tarantool 1.10
@@ -30,14 +32,14 @@ end
 -- configure cartridge
 
 local cartridge = require('cartridge')
-
 local ok, err = cartridge.cfg({
     roles = {
         'cartridge.roles.vshard-storage',
         'cartridge.roles.vshard-router',
-        'cartridge.roles.metrics',
-        'app.roles.custom',
+        'app.roles.api',
+        'app.roles.links_cache',
     },
+    cluster_cookie = 'cache-cluster-cookie',
 })
 
 assert(ok, tostring(err))
