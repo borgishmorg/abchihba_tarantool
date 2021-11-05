@@ -1,5 +1,4 @@
 local checks = require('checks') -- для проверки аргументов функций
-local log = require('log')
 
 local function init_spaces()
     local link = box.schema.space.create(
@@ -34,7 +33,7 @@ local function link_get(uuid)
     checks('string')
 
     local link = box.space.link:get(uuid)
-    log.info(link)
+
     if link == nil then
         return nil
     end
