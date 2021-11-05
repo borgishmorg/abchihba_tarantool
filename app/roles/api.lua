@@ -90,7 +90,7 @@ local function http_link_get(req)
 
     local resp = req:render({ json = {} })
     resp.status = 301
-    resp.headers['Location'] = 'https://vk.com'
+    resp.headers['Location'] = link
     return resp
 end
 
